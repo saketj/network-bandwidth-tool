@@ -13,22 +13,14 @@ var Q = thrift.Q;
 var ttypes = module.exports = {};
 var BandwidthMeasurement = module.exports.BandwidthMeasurement = function(args) {
   this.source_ip = null;
-  this.source_port = null;
   this.destination_ip = null;
-  this.destination_port = null;
   this.bandwidth = null;
   if (args) {
     if (args.source_ip !== undefined && args.source_ip !== null) {
       this.source_ip = args.source_ip;
     }
-    if (args.source_port !== undefined && args.source_port !== null) {
-      this.source_port = args.source_port;
-    }
     if (args.destination_ip !== undefined && args.destination_ip !== null) {
       this.destination_ip = args.destination_ip;
-    }
-    if (args.destination_port !== undefined && args.destination_port !== null) {
-      this.destination_port = args.destination_port;
     }
     if (args.bandwidth !== undefined && args.bandwidth !== null) {
       this.bandwidth = args.bandwidth;
@@ -58,26 +50,12 @@ BandwidthMeasurement.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.source_port = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.STRING) {
         this.destination_ip = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
-      case 4:
-      if (ftype == Thrift.Type.STRING) {
-        this.destination_port = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 5:
+      case 3:
       if (ftype == Thrift.Type.DOUBLE) {
         this.bandwidth = input.readDouble();
       } else {
@@ -100,23 +78,13 @@ BandwidthMeasurement.prototype.write = function(output) {
     output.writeString(this.source_ip);
     output.writeFieldEnd();
   }
-  if (this.source_port !== null && this.source_port !== undefined) {
-    output.writeFieldBegin('source_port', Thrift.Type.STRING, 2);
-    output.writeString(this.source_port);
-    output.writeFieldEnd();
-  }
   if (this.destination_ip !== null && this.destination_ip !== undefined) {
-    output.writeFieldBegin('destination_ip', Thrift.Type.STRING, 3);
+    output.writeFieldBegin('destination_ip', Thrift.Type.STRING, 2);
     output.writeString(this.destination_ip);
     output.writeFieldEnd();
   }
-  if (this.destination_port !== null && this.destination_port !== undefined) {
-    output.writeFieldBegin('destination_port', Thrift.Type.STRING, 4);
-    output.writeString(this.destination_port);
-    output.writeFieldEnd();
-  }
   if (this.bandwidth !== null && this.bandwidth !== undefined) {
-    output.writeFieldBegin('bandwidth', Thrift.Type.DOUBLE, 5);
+    output.writeFieldBegin('bandwidth', Thrift.Type.DOUBLE, 3);
     output.writeDouble(this.bandwidth);
     output.writeFieldEnd();
   }

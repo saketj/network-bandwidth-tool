@@ -1,0 +1,11 @@
+{
+  "instances": [
+    "127.0.0.1",
+    "127.0.0.1"
+  ],
+  "iperf": {
+    "command": "iperf3",
+    "iperf_port": "5201"
+  },
+  "worker_port": "9090"
+}

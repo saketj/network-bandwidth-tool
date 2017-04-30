@@ -7,14 +7,12 @@ exception MeasurementFailedException {
 }
 
 struct BandwidthWorkRequest {
-    1: string destination_ip,
-    2: string destination_port,
+    1: string destination_ip
 }
 
 struct BandwidthWorkResponse {
     1: string destination_ip,
-    2: string destination_port,
-    3: double bandwidth          /*  measured in Mbits/sec   */
+    2: double bandwidth          /*  measured in Mbits/sec   */
 }
 
 

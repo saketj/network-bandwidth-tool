@@ -6,6 +6,10 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.Map;
 
 /**
  * The NBT master sends periodic requests to workers
@@ -13,43 +17,64 @@ import org.apache.thrift.transport.TTransportException;
  */
 public class Master {
 
-    private MeasurementStats stats;
+    private JSONObject config;
+    private MeasurementRepository repository;
+    private int nbtWorkerPort;
 
-    public Master(MeasurementStats stats) {
-        this.stats = stats;
+    private static final long PAUSE_BTW_MEASUREMENTS = 2000;
+
+
+    public Master(JSONObject config, MeasurementRepository repository) {
+        this.config = config;
+        this.repository = repository;
+        nbtWorkerPort = Integer.parseInt((String)config.get("worker_port"));
+        initializeRepositoryRecords(repository, config);
+    }
+
+    private void initializeRepositoryRecords(MeasurementRepository repository, JSONObject config) {
+        JSONArray jsonList = (JSONArray) config.get("instances");
+        for (int i = 0; i < jsonList.size(); ++i) {
+            String sourceIP = (String) jsonList.get(i);
+            for (int j = i + 1; j < jsonList.size(); ++j) {
+                String destinationIP = (String) jsonList.get(j);
+                MeasurementRecord record = new MeasurementRecord(sourceIP, destinationIP, 0.0);
+                String key = sourceIP + "=" + destinationIP;
+                repository.measurementRecords.put(key, record);
+            }
+        }
     }
 
     public void start() {
-        TTransport[] transport = new TTransport[20];
-        NBTMeasurementService.Client[] client = new NBTMeasurementService.Client[20];
+        while (true) {
+            for (Map.Entry<String, MeasurementRecord> entry : repository.measurementRecords.entrySet()) {
+                String sourceIP = entry.getValue().sourceIP;
+                String destinationIP = entry.getValue().destinationIP;
+                try {
+                    Thread.sleep(PAUSE_BTW_MEASUREMENTS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                TTransport transport = new TSocket(sourceIP, nbtWorkerPort);
+                try {
+                    transport.open();
+                } catch (TTransportException e) {
+                    System.err.println("Failed to open transport to the worker.");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
 
-        for (int i = 0; i < 20; i++) {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            transport[i] = new TSocket("localhost", 9090);
-            try {
-                transport[i].open();
-            } catch (TTransportException e) {
-                System.err.println("Failed to open transport to the worker.");
-                e.printStackTrace();
-                System.exit(1);
-            }
-
-            TProtocol protocol = new TBinaryProtocol(transport[i]);
-            client[i] =  new NBTMeasurementService.Client(protocol);
-            BandwidthWorkRequest workRequest = new BandwidthWorkRequest();
-            workRequest.setDestination_ip("X.X.X.X");
-            workRequest.setDestination_port("5379");
-            try {
-                BandwidthWorkResponse workResponse = client[i].performMeasurement(workRequest);
-                stats.aggregateBandwidth += workResponse.getBandwidth();
-            } catch (TException e) {
-                System.err.println("Master request to worker failed.");
-                e.printStackTrace();
-                System.exit(1);
+                TProtocol protocol = new TBinaryProtocol(transport);
+                NBTMeasurementService.Client client = new NBTMeasurementService.Client(protocol);
+                BandwidthWorkRequest workRequest = new BandwidthWorkRequest();
+                workRequest.setDestination_ip(destinationIP);
+                try {
+                    BandwidthWorkResponse workResponse = client.performMeasurement(workRequest);
+                    entry.getValue().bandwidth = workResponse.getBandwidth();
+                } catch (TException e) {
+                    System.err.println("Master request to worker failed.");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
             }
         }
     }

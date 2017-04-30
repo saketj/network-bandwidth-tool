@@ -1,4 +1,7 @@
 var thrift = require('thrift');
+var express = require('express');
+var app = express();
+
 var NBTReportingService = require('./NBTReportingService');
 console.log('', NBTReportingService);
 var ttypes = require('./nbt-reporting-service_types');
@@ -7,20 +10,28 @@ var transport = thrift.TBufferedTransport;
 var protocol = thrift.TBinaryProtocol;
 
 var connection = thrift.createConnection("localhost", 9091, {
-  transport : transport,
-  protocol : protocol
+    transport : transport,
+    protocol : protocol
 });
 
 connection.on('error', function(err) {
-  if (err) {
-    console.log("Error connecting to reporting server.", err);
-  }
+    if (err) {
+        console.log("Error connecting to reporting server.", err);
+    }
 });
 
-// Create a Calculator client with the connection
+// Create a NBTReportingService client with the connection
 var client = thrift.createClient(NBTReportingService, connection);
 
-client.getSummary(function(err, response) {
-  console.log(" ", response);
-  connection.end();
+
+app.get('/summary', function(req, res){
+    client.getSummary(function(err, response) {
+        res.send(response);
+    });
 });
+
+
+app.listen(3000, function () {
+    console.log('Reporting also available via http at http://localhost:3000/summary.')
+})
+

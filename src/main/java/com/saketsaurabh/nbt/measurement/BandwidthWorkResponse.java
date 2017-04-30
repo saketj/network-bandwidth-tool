@@ -12,21 +12,18 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("BandwidthWorkResponse");
 
   private static final org.apache.thrift.protocol.TField DESTINATION_IP_FIELD_DESC = new org.apache.thrift.protocol.TField("destination_ip", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField DESTINATION_PORT_FIELD_DESC = new org.apache.thrift.protocol.TField("destination_port", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField BANDWIDTH_FIELD_DESC = new org.apache.thrift.protocol.TField("bandwidth", org.apache.thrift.protocol.TType.DOUBLE, (short)3);
+  private static final org.apache.thrift.protocol.TField BANDWIDTH_FIELD_DESC = new org.apache.thrift.protocol.TField("bandwidth", org.apache.thrift.protocol.TType.DOUBLE, (short)2);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new BandwidthWorkResponseStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new BandwidthWorkResponseTupleSchemeFactory();
 
   public java.lang.String destination_ip; // required
-  public java.lang.String destination_port; // required
   public double bandwidth; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     DESTINATION_IP((short)1, "destination_ip"),
-    DESTINATION_PORT((short)2, "destination_port"),
-    BANDWIDTH((short)3, "bandwidth");
+    BANDWIDTH((short)2, "bandwidth");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -43,9 +40,7 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
       switch(fieldId) {
         case 1: // DESTINATION_IP
           return DESTINATION_IP;
-        case 2: // DESTINATION_PORT
-          return DESTINATION_PORT;
-        case 3: // BANDWIDTH
+        case 2: // BANDWIDTH
           return BANDWIDTH;
         default:
           return null;
@@ -94,8 +89,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.DESTINATION_IP, new org.apache.thrift.meta_data.FieldMetaData("destination_ip", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.DESTINATION_PORT, new org.apache.thrift.meta_data.FieldMetaData("destination_port", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.BANDWIDTH, new org.apache.thrift.meta_data.FieldMetaData("bandwidth", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -107,12 +100,10 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
 
   public BandwidthWorkResponse(
     java.lang.String destination_ip,
-    java.lang.String destination_port,
     double bandwidth)
   {
     this();
     this.destination_ip = destination_ip;
-    this.destination_port = destination_port;
     this.bandwidth = bandwidth;
     setBandwidthIsSet(true);
   }
@@ -125,9 +116,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     if (other.isSetDestination_ip()) {
       this.destination_ip = other.destination_ip;
     }
-    if (other.isSetDestination_port()) {
-      this.destination_port = other.destination_port;
-    }
     this.bandwidth = other.bandwidth;
   }
 
@@ -138,7 +126,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
   @Override
   public void clear() {
     this.destination_ip = null;
-    this.destination_port = null;
     setBandwidthIsSet(false);
     this.bandwidth = 0.0;
   }
@@ -164,30 +151,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
   public void setDestination_ipIsSet(boolean value) {
     if (!value) {
       this.destination_ip = null;
-    }
-  }
-
-  public java.lang.String getDestination_port() {
-    return this.destination_port;
-  }
-
-  public BandwidthWorkResponse setDestination_port(java.lang.String destination_port) {
-    this.destination_port = destination_port;
-    return this;
-  }
-
-  public void unsetDestination_port() {
-    this.destination_port = null;
-  }
-
-  /** Returns true if field destination_port is set (has been assigned a value) and false otherwise */
-  public boolean isSetDestination_port() {
-    return this.destination_port != null;
-  }
-
-  public void setDestination_portIsSet(boolean value) {
-    if (!value) {
-      this.destination_port = null;
     }
   }
 
@@ -224,14 +187,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
       }
       break;
 
-    case DESTINATION_PORT:
-      if (value == null) {
-        unsetDestination_port();
-      } else {
-        setDestination_port((java.lang.String)value);
-      }
-      break;
-
     case BANDWIDTH:
       if (value == null) {
         unsetBandwidth();
@@ -247,9 +202,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     switch (field) {
     case DESTINATION_IP:
       return getDestination_ip();
-
-    case DESTINATION_PORT:
-      return getDestination_port();
 
     case BANDWIDTH:
       return getBandwidth();
@@ -267,8 +219,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     switch (field) {
     case DESTINATION_IP:
       return isSetDestination_ip();
-    case DESTINATION_PORT:
-      return isSetDestination_port();
     case BANDWIDTH:
       return isSetBandwidth();
     }
@@ -299,15 +249,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
         return false;
     }
 
-    boolean this_present_destination_port = true && this.isSetDestination_port();
-    boolean that_present_destination_port = true && that.isSetDestination_port();
-    if (this_present_destination_port || that_present_destination_port) {
-      if (!(this_present_destination_port && that_present_destination_port))
-        return false;
-      if (!this.destination_port.equals(that.destination_port))
-        return false;
-    }
-
     boolean this_present_bandwidth = true;
     boolean that_present_bandwidth = true;
     if (this_present_bandwidth || that_present_bandwidth) {
@@ -328,10 +269,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     if (isSetDestination_ip())
       hashCode = hashCode * 8191 + destination_ip.hashCode();
 
-    hashCode = hashCode * 8191 + ((isSetDestination_port()) ? 131071 : 524287);
-    if (isSetDestination_port())
-      hashCode = hashCode * 8191 + destination_port.hashCode();
-
     hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(bandwidth);
 
     return hashCode;
@@ -351,16 +288,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     }
     if (isSetDestination_ip()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.destination_ip, other.destination_ip);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = java.lang.Boolean.valueOf(isSetDestination_port()).compareTo(other.isSetDestination_port());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetDestination_port()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.destination_port, other.destination_port);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -400,14 +327,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
       sb.append("null");
     } else {
       sb.append(this.destination_ip);
-    }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("destination_port:");
-    if (this.destination_port == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.destination_port);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -467,15 +386,7 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // DESTINATION_PORT
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.destination_port = iprot.readString();
-              struct.setDestination_portIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 3: // BANDWIDTH
+          case 2: // BANDWIDTH
             if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
               struct.bandwidth = iprot.readDouble();
               struct.setBandwidthIsSet(true);
@@ -503,11 +414,6 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
         oprot.writeString(struct.destination_ip);
         oprot.writeFieldEnd();
       }
-      if (struct.destination_port != null) {
-        oprot.writeFieldBegin(DESTINATION_PORT_FIELD_DESC);
-        oprot.writeString(struct.destination_port);
-        oprot.writeFieldEnd();
-      }
       oprot.writeFieldBegin(BANDWIDTH_FIELD_DESC);
       oprot.writeDouble(struct.bandwidth);
       oprot.writeFieldEnd();
@@ -532,18 +438,12 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
       if (struct.isSetDestination_ip()) {
         optionals.set(0);
       }
-      if (struct.isSetDestination_port()) {
+      if (struct.isSetBandwidth()) {
         optionals.set(1);
       }
-      if (struct.isSetBandwidth()) {
-        optionals.set(2);
-      }
-      oprot.writeBitSet(optionals, 3);
+      oprot.writeBitSet(optionals, 2);
       if (struct.isSetDestination_ip()) {
         oprot.writeString(struct.destination_ip);
-      }
-      if (struct.isSetDestination_port()) {
-        oprot.writeString(struct.destination_port);
       }
       if (struct.isSetBandwidth()) {
         oprot.writeDouble(struct.bandwidth);
@@ -553,16 +453,12 @@ public class BandwidthWorkResponse implements org.apache.thrift.TBase<BandwidthW
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, BandwidthWorkResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(3);
+      java.util.BitSet incoming = iprot.readBitSet(2);
       if (incoming.get(0)) {
         struct.destination_ip = iprot.readString();
         struct.setDestination_ipIsSet(true);
       }
       if (incoming.get(1)) {
-        struct.destination_port = iprot.readString();
-        struct.setDestination_portIsSet(true);
-      }
-      if (incoming.get(2)) {
         struct.bandwidth = iprot.readDouble();
         struct.setBandwidthIsSet(true);
       }

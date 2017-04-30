@@ -12,18 +12,15 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("BandwidthWorkRequest");
 
   private static final org.apache.thrift.protocol.TField DESTINATION_IP_FIELD_DESC = new org.apache.thrift.protocol.TField("destination_ip", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField DESTINATION_PORT_FIELD_DESC = new org.apache.thrift.protocol.TField("destination_port", org.apache.thrift.protocol.TType.STRING, (short)2);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new BandwidthWorkRequestStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new BandwidthWorkRequestTupleSchemeFactory();
 
   public java.lang.String destination_ip; // required
-  public java.lang.String destination_port; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    DESTINATION_IP((short)1, "destination_ip"),
-    DESTINATION_PORT((short)2, "destination_port");
+    DESTINATION_IP((short)1, "destination_ip");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -40,8 +37,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
       switch(fieldId) {
         case 1: // DESTINATION_IP
           return DESTINATION_IP;
-        case 2: // DESTINATION_PORT
-          return DESTINATION_PORT;
         default:
           return null;
       }
@@ -87,8 +82,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.DESTINATION_IP, new org.apache.thrift.meta_data.FieldMetaData("destination_ip", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.DESTINATION_PORT, new org.apache.thrift.meta_data.FieldMetaData("destination_port", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(BandwidthWorkRequest.class, metaDataMap);
   }
@@ -97,12 +90,10 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
   }
 
   public BandwidthWorkRequest(
-    java.lang.String destination_ip,
-    java.lang.String destination_port)
+    java.lang.String destination_ip)
   {
     this();
     this.destination_ip = destination_ip;
-    this.destination_port = destination_port;
   }
 
   /**
@@ -111,9 +102,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
   public BandwidthWorkRequest(BandwidthWorkRequest other) {
     if (other.isSetDestination_ip()) {
       this.destination_ip = other.destination_ip;
-    }
-    if (other.isSetDestination_port()) {
-      this.destination_port = other.destination_port;
     }
   }
 
@@ -124,7 +112,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
   @Override
   public void clear() {
     this.destination_ip = null;
-    this.destination_port = null;
   }
 
   public java.lang.String getDestination_ip() {
@@ -151,30 +138,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     }
   }
 
-  public java.lang.String getDestination_port() {
-    return this.destination_port;
-  }
-
-  public BandwidthWorkRequest setDestination_port(java.lang.String destination_port) {
-    this.destination_port = destination_port;
-    return this;
-  }
-
-  public void unsetDestination_port() {
-    this.destination_port = null;
-  }
-
-  /** Returns true if field destination_port is set (has been assigned a value) and false otherwise */
-  public boolean isSetDestination_port() {
-    return this.destination_port != null;
-  }
-
-  public void setDestination_portIsSet(boolean value) {
-    if (!value) {
-      this.destination_port = null;
-    }
-  }
-
   public void setFieldValue(_Fields field, java.lang.Object value) {
     switch (field) {
     case DESTINATION_IP:
@@ -185,14 +148,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
       }
       break;
 
-    case DESTINATION_PORT:
-      if (value == null) {
-        unsetDestination_port();
-      } else {
-        setDestination_port((java.lang.String)value);
-      }
-      break;
-
     }
   }
 
@@ -200,9 +155,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     switch (field) {
     case DESTINATION_IP:
       return getDestination_ip();
-
-    case DESTINATION_PORT:
-      return getDestination_port();
 
     }
     throw new java.lang.IllegalStateException();
@@ -217,8 +169,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     switch (field) {
     case DESTINATION_IP:
       return isSetDestination_ip();
-    case DESTINATION_PORT:
-      return isSetDestination_port();
     }
     throw new java.lang.IllegalStateException();
   }
@@ -247,15 +197,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
         return false;
     }
 
-    boolean this_present_destination_port = true && this.isSetDestination_port();
-    boolean that_present_destination_port = true && that.isSetDestination_port();
-    if (this_present_destination_port || that_present_destination_port) {
-      if (!(this_present_destination_port && that_present_destination_port))
-        return false;
-      if (!this.destination_port.equals(that.destination_port))
-        return false;
-    }
-
     return true;
   }
 
@@ -266,10 +207,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     hashCode = hashCode * 8191 + ((isSetDestination_ip()) ? 131071 : 524287);
     if (isSetDestination_ip())
       hashCode = hashCode * 8191 + destination_ip.hashCode();
-
-    hashCode = hashCode * 8191 + ((isSetDestination_port()) ? 131071 : 524287);
-    if (isSetDestination_port())
-      hashCode = hashCode * 8191 + destination_port.hashCode();
 
     return hashCode;
   }
@@ -288,16 +225,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
     }
     if (isSetDestination_ip()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.destination_ip, other.destination_ip);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = java.lang.Boolean.valueOf(isSetDestination_port()).compareTo(other.isSetDestination_port());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetDestination_port()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.destination_port, other.destination_port);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -327,14 +254,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
       sb.append("null");
     } else {
       sb.append(this.destination_ip);
-    }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("destination_port:");
-    if (this.destination_port == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.destination_port);
     }
     first = false;
     sb.append(")");
@@ -388,14 +307,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // DESTINATION_PORT
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.destination_port = iprot.readString();
-              struct.setDestination_portIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -414,11 +325,6 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
       if (struct.destination_ip != null) {
         oprot.writeFieldBegin(DESTINATION_IP_FIELD_DESC);
         oprot.writeString(struct.destination_ip);
-        oprot.writeFieldEnd();
-      }
-      if (struct.destination_port != null) {
-        oprot.writeFieldBegin(DESTINATION_PORT_FIELD_DESC);
-        oprot.writeString(struct.destination_port);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -442,29 +348,19 @@ public class BandwidthWorkRequest implements org.apache.thrift.TBase<BandwidthWo
       if (struct.isSetDestination_ip()) {
         optionals.set(0);
       }
-      if (struct.isSetDestination_port()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
+      oprot.writeBitSet(optionals, 1);
       if (struct.isSetDestination_ip()) {
         oprot.writeString(struct.destination_ip);
-      }
-      if (struct.isSetDestination_port()) {
-        oprot.writeString(struct.destination_port);
       }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, BandwidthWorkRequest struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
+      java.util.BitSet incoming = iprot.readBitSet(1);
       if (incoming.get(0)) {
         struct.destination_ip = iprot.readString();
         struct.setDestination_ipIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.destination_port = iprot.readString();
-        struct.setDestination_portIsSet(true);
       }
     }
   }
