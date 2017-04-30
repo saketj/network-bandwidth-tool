@@ -1,7 +1,9 @@
 package com.saketsaurabh.nbt.components;
 
 import com.saketsaurabh.nbt.measurement.Master;
+import com.saketsaurabh.nbt.measurement.MeasurementStats;
 import com.saketsaurabh.nbt.measurement.Worker;
+import com.saketsaurabh.nbt.reporting.Reporting;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
@@ -31,7 +33,10 @@ public class Main {
             System.exit(1);
         } else if (cmd.hasOption("m")) {
             System.out.println("Started as a master...");
-            Master master = new Master();
+            MeasurementStats stats = new MeasurementStats();
+            Reporting reporting = new Reporting(stats);
+            reporting.start();
+            Master master = new Master(stats);
             master.start();
         } else if (cmd.hasOption("w")) {
             System.out.println("Started as a worker...");

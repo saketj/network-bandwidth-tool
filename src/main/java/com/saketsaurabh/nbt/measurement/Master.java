@@ -13,11 +13,22 @@ import org.apache.thrift.transport.TTransportException;
  */
 public class Master {
 
+    private MeasurementStats stats;
+
+    public Master(MeasurementStats stats) {
+        this.stats = stats;
+    }
+
     public void start() {
         TTransport[] transport = new TTransport[20];
         NBTMeasurementService.Client[] client = new NBTMeasurementService.Client[20];
 
         for (int i = 0; i < 20; i++) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             transport[i] = new TSocket("localhost", 9090);
             try {
                 transport[i].open();
@@ -34,7 +45,7 @@ public class Master {
             workRequest.setDestination_port("5379");
             try {
                 BandwidthWorkResponse workResponse = client[i].performMeasurement(workRequest);
-                System.out.println(workResponse.getBandwidth() + " Mbits / second");
+                stats.aggregateBandwidth += workResponse.getBandwidth();
             } catch (TException e) {
                 System.err.println("Master request to worker failed.");
                 e.printStackTrace();
