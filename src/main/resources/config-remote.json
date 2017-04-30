@@ -7,7 +7,7 @@
     "54.207.204.254"
   ],
   "iperf": {
-    "command": "sudo iperf3",
+    "command": "iperf3",
     "iperf_port": "5201"
   },
   "worker_port": "9090"
