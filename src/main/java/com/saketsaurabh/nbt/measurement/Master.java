@@ -20,12 +20,14 @@ public class Master {
     private JSONObject config;
     private MeasurementRepository repository;
     private int nbtWorkerPort;
+    private int pause_btw_measurements;
 
 
     public Master(JSONObject config, MeasurementRepository repository) {
         this.config = config;
         this.repository = repository;
         nbtWorkerPort = Integer.parseInt((String)config.get("worker_port"));
+        pause_btw_measurements = Integer.parseInt((String)config.get("time_btw_measurements"));
         initializeRepositoryRecords(repository, config);
     }
 
@@ -47,6 +49,12 @@ public class Master {
             for (Map.Entry<String, MeasurementRecord> entry : repository.measurementRecords.entrySet()) {
                 String sourceIP = entry.getValue().sourceIP;
                 String destinationIP = entry.getValue().destinationIP;
+                
+                try {
+                    Thread.sleep(pause_btw_measurements);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 TTransport transport = new TSocket(sourceIP, nbtWorkerPort);
                 try {
