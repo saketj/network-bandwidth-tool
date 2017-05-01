@@ -1,6 +1,9 @@
 var thrift = require('thrift');
 var express = require('express');
+var cors = require('cors');
+
 var app = express();
+app.use(cors());
 
 var NBTReportingService = require('./NBTReportingService');
 console.log('', NBTReportingService);
