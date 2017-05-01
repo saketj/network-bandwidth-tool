@@ -1,6 +1,5 @@
 package com.saketsaurabh.nbt.components;
 
-import com.saketsaurabh.nbt.measurement.IperfServer;
 import com.saketsaurabh.nbt.measurement.Master;
 import com.saketsaurabh.nbt.measurement.MeasurementRepository;
 import com.saketsaurabh.nbt.measurement.Worker;
@@ -63,8 +62,8 @@ public class Main {
             master.start();
         } else if (cmd.hasOption("w")) {
             System.out.println("Started as a worker...");
-            IperfServer iperfServer = new IperfServer(config);
-            iperfServer.start();
+            // IperfServer iperfServer = new IperfServer(config);
+            // iperfServer.start();
             Worker worker = new Worker(config);
             worker.start();
         } else {
