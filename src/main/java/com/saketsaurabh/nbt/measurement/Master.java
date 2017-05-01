@@ -21,8 +21,6 @@ public class Master {
     private MeasurementRepository repository;
     private int nbtWorkerPort;
 
-    private static final long PAUSE_BTW_MEASUREMENTS = 2000;
-
 
     public Master(JSONObject config, MeasurementRepository repository) {
         this.config = config;
@@ -49,11 +47,7 @@ public class Master {
             for (Map.Entry<String, MeasurementRecord> entry : repository.measurementRecords.entrySet()) {
                 String sourceIP = entry.getValue().sourceIP;
                 String destinationIP = entry.getValue().destinationIP;
-                try {
-                    Thread.sleep(PAUSE_BTW_MEASUREMENTS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 TTransport transport = new TSocket(sourceIP, nbtWorkerPort);
                 try {
                     transport.open();
