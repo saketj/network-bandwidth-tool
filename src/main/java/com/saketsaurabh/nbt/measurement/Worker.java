@@ -71,15 +71,15 @@ class WorkHandler implements NBTMeasurementService.Iface {
     public BandwidthWorkResponse performMeasurement(BandwidthWorkRequest workRequest) throws MeasurementFailedException, TException {
         BandwidthWorkResponse workResponse = new BandwidthWorkResponse();
         workResponse.setDestination_ip(workRequest.getDestination_ip());
-        
+
         // Run the iperf command to find the bandwidth to the destination.
         String iperfCmd = (String)((JSONObject) config.get("iperf")).get("command");
         String iperfServerPort = (String)((JSONObject) config.get("iperf")).get("iperf_port");
-        String iperfPayloadSize = (String)((JSONObject) config.get("iperf")).get("payload_size");
+        String iperfTestDuration = (String)((JSONObject) config.get("iperf")).get("test_duration");
         ProcessBuilder pb = new ProcessBuilder(iperfCmd,
                 "-c", workRequest.getDestination_ip(),
                 "-p", iperfServerPort,
-                "-n", iperfPayloadSize,
+                "-t", iperfTestDuration,
                 "-J");
         Process process;
         String output = null;
