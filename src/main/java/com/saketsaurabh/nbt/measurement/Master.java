@@ -49,7 +49,7 @@ public class Master {
             for (Map.Entry<String, MeasurementRecord> entry : repository.measurementRecords.entrySet()) {
                 String sourceIP = entry.getValue().sourceIP;
                 String destinationIP = entry.getValue().destinationIP;
-                
+
                 try {
                     Thread.sleep(pause_btw_measurements);
                 } catch (InterruptedException e) {

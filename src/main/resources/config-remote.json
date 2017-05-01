@@ -9,7 +9,7 @@
   "iperf": {
     "command": "iperf3",
     "iperf_port": "5201",
-    "payload_size": "1M"
+    "payload_size": "100M"
   },
   "worker_port": "9090",
   "time_btw_measurements": "10"

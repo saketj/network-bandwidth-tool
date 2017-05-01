@@ -71,7 +71,7 @@ class WorkHandler implements NBTMeasurementService.Iface {
     public BandwidthWorkResponse performMeasurement(BandwidthWorkRequest workRequest) throws MeasurementFailedException, TException {
         BandwidthWorkResponse workResponse = new BandwidthWorkResponse();
         workResponse.setDestination_ip(workRequest.getDestination_ip());
-        workResponse.setBandwidth(1.0);
+        
         // Run the iperf command to find the bandwidth to the destination.
         String iperfCmd = (String)((JSONObject) config.get("iperf")).get("command");
         String iperfServerPort = (String)((JSONObject) config.get("iperf")).get("iperf_port");
