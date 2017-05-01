@@ -72,6 +72,7 @@ class ReportingHandler implements NBTReportingService.Iface {
             measurement.setSource_ip(record.getSourceIP());
             measurement.setDestination_ip(record.getDestinationIP());
             measurement.setBandwidth(record.getBandwidth());
+            measurement.setTimestamp((int) (System.currentTimeMillis() / 1000L));
             outputList.add(measurement);
         }
         return outputList;

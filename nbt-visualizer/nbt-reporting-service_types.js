@@ -15,6 +15,7 @@ var BandwidthMeasurement = module.exports.BandwidthMeasurement = function(args) 
   this.source_ip = null;
   this.destination_ip = null;
   this.bandwidth = null;
+  this.timestamp = null;
   if (args) {
     if (args.source_ip !== undefined && args.source_ip !== null) {
       this.source_ip = args.source_ip;
@@ -24,6 +25,9 @@ var BandwidthMeasurement = module.exports.BandwidthMeasurement = function(args) 
     }
     if (args.bandwidth !== undefined && args.bandwidth !== null) {
       this.bandwidth = args.bandwidth;
+    }
+    if (args.timestamp !== undefined && args.timestamp !== null) {
+      this.timestamp = args.timestamp;
     }
   }
 };
@@ -62,6 +66,13 @@ BandwidthMeasurement.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 4:
+      if (ftype == Thrift.Type.I32) {
+        this.timestamp = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -86,6 +97,11 @@ BandwidthMeasurement.prototype.write = function(output) {
   if (this.bandwidth !== null && this.bandwidth !== undefined) {
     output.writeFieldBegin('bandwidth', Thrift.Type.DOUBLE, 3);
     output.writeDouble(this.bandwidth);
+    output.writeFieldEnd();
+  }
+  if (this.timestamp !== null && this.timestamp !== undefined) {
+    output.writeFieldBegin('timestamp', Thrift.Type.I32, 4);
+    output.writeI32(this.timestamp);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
