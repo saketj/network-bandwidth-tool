@@ -9,7 +9,7 @@ app.use(cors());
 
 app.get('/systemstats', function(req, res){
     exec('./stats.sh', function(error, stdout, stderr) {
-      res.send(stdout);
+      res.json(stdout);
     });
 });
 
