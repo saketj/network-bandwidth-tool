@@ -1,0 +1,16 @@
+{
+  "name": "nbt-system-stats",
+  "version": "0.1.0",
+  "description": "A Node.js Web Application for visualizing the bandwidth",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Saket Saurabh",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "thrift": "^0.10.0"
+  }
+}
