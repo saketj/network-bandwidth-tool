@@ -10,7 +10,7 @@ var client = new Keen({
 
 var options = {
   method: 'GET',
-  uri: 'http://107.20.28.167:3000/summary',
+  uri: 'http://184.72.0.96:3000/summary',
   json: true
 };
 
