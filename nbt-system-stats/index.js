@@ -15,5 +15,5 @@ app.get('/systemstats', function(req, res){
 
 
 app.listen(3001, function () {
-    console.log('Cluster stats available via http at http://localhost:3000/systemstats.')
+    console.log('Cluster stats available via http at http://localhost:3001/systemstats.')
 })
