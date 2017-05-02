@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CS 740: NBT Visualization</title>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/syntax.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/epoch.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/site.css" />
+</head>
+<body class="application">
+
+  <div id="areaChart" class="epoch category10" style="width: 800px; height: 200px"></div>
+
+  <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+  <script type="text/javascript" src="../../assets/js/meta.js"></script>
+  <script type="text/javascript" src="../../assets/js/d3.js"></script>
+  <script type="text/javascript" src="../../assets/js/epoch.js"></script>
+
+  <script type="text/javascript">
+    var client = new Keen({
+      projectId: "5906ce0cbe8c3e260bcadb9b",
+      readKey: "e840b169-872b-4581-9339-4737f2a42c7d"
+    });
+
+    var fetchDataFromServer = function() {
+      var query = new Keen.Query("extraction", {
+        event_collection: "measurements",
+        timeframe: "this_1_minutes",
+        timezone: "US/Central"
+      });
+      client.run(query, function(err, res) {
+        processDataFromServer(err, res);
+      });
+    };
+
+    var processDataFromServer = function(err, data) {
+      console.log(data);
+      // Recursive call after 20s
+      setTimeout(fetchDataFromServer, 20000);
+    };
+
+    Keen.ready(function(){
+      // fetchDataFromServer();
+    });
+
+    var areaChartData = [
+      // The first layer
+      {
+        label: "Layer 1",
+        values: [ {time: 1370044800, y: 100}, {time: 1370044801, y: 210},
+                  {time: 1370044802, y: 100}, {time: 1370044803, y: 210}]
+      },
+
+      // The second layer
+      {
+        label: "Layer 2",
+        values: [ {time: 1370044800, y: 78}, {time: 1370044801, y: 98},
+                  {time: 1370044802, y: 78}, {time: 1370044803, y: 98}]
+      },
+      {
+        label: "Layer 3",
+        values: [ {time: 1370044800, y: 68}, {time: 1370044801, y: 38},
+                  {time: 1370044802, y: 58}, {time: 1370044803, y: 28}]
+      },
+      {
+        label: "Layer 4",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 5",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 6",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 7",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 8",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 9",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      },
+      {
+        label: "Layer 10",
+        values: [ {time: 1370044800, y: 18}, {time: 1370044801, y: 48},
+                  {time: 1370044802, y: 32}, {time: 1370044803, y: 65}]
+      }
+    ];
+
+    var timeVal = 1370044803;
+    var chart = $('#areaChart').epoch({
+      type: 'time.area',
+      data: areaChartData,
+      axes: ['left', 'bottom', 'right']
+    });
+
+    setInterval(function() {
+        timeVal = timeVal + 1;
+        var ndata = [ { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)}
+                    ];
+        chart.push(ndata);
+    }, 1000);
+
+  </script>
+</body>
+</html>

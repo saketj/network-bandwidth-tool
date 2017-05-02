@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CS 740: NBT Visualization</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/epoch.min.css" />
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="https://keen.io">CS 740: Network Bandwidth Tool - Visualization</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 1: Shows geo locations of our machines
+          </div>
+          <div class="chart-stage">
+            <div id="grid-1-1">
+              <img data-src="holder.js/100%x240/white/text:#grid-1-1">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 2: Shows summaries of our data
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x240/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 3: North America
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="us-east" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 4: Europe
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x120/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 5: Asia
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x120/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+<!-- end of three -->
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 6: Australia
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x120/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 7: South America
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x120/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Chart 8: More Summaries
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x120/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <hr>
+
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+  </div>
+
+  <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+  <script type="text/javascript" src="../../assets/js/meta.js"></script>
+  <script type="text/javascript" src="../../assets/js/d3.js"></script>
+  <script type="text/javascript" src="../../assets/js/epoch.js"></script>
+
+  <script type="text/javascript">
+    var client = new Keen({
+      projectId: "5906ce0cbe8c3e260bcadb9b",
+      readKey: "e840b169-872b-4581-9339-4737f2a42c7d"
+    });
+
+    var fetchDataFromServer = function() {
+      var query = new Keen.Query("extraction", {
+        event_collection: "measurements",
+        timeframe: "this_1_minutes",
+        timezone: "US/Central"
+      });
+      client.run(query, function(err, res) {
+        processDataFromServer(err, res);
+      });
+    };
+
+    var processDataFromServer = function(err, data) {
+      console.log(data);
+      // Recursive call after 20s
+      setTimeout(fetchDataFromServer, 20000);
+    };
+
+    Keen.ready(function(){
+      // fetchDataFromServer();
+    });
+
+    var areaChartData = [
+      // The first layer
+      {
+        label: "Layer 1",
+        values: [ {time: 1370044800, y: 100}, {time: 1370044801, y: 210},
+                  {time: 1370044802, y: 100}, {time: 1370044803, y: 210}]
+      },
+
+      // The second layer
+      {
+        label: "Layer 2",
+        values: [ {time: 1370044800, y: 78}, {time: 1370044801, y: 98},
+                  {time: 1370044802, y: 78}, {time: 1370044803, y: 98}]
+      }
+    ];
+
+    var timeVal = 1370044803;
+    var chart = $('#us-east').epoch({
+      type: 'time.area',
+      data: areaChartData,
+      axes: ['left', 'bottom', 'right']
+    });
+
+    setInterval(function() {
+        timeVal = timeVal + 1;
+        var ndata = [ { time: timeVal, y: Math.floor((Math.random() * 100) + 1)},
+                      { time: timeVal, y: Math.floor((Math.random() * 100) + 1)}
+                    ];
+        chart.push(ndata);
+    }, 1000);
+
+  </script>
+</body>
+</html>

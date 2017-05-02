@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Layouts &raquo; Split-Centered</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/epoch.min.css" />
+  <style>
+    #flow-1 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-2 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-3 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-4 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-5 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-6 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-7 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-8 .layer-1 .area {
+      fill: #AA6C39;
+    }
+    #flow-9 .layer-1 .area {
+      fill: #AA6C39;
+    }
+    #flow-10 .layer-1 .area {
+      fill: #2D882D;
+    }
+  </style>
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">CS 740: Network Bandwidth Visualization Tool</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-1" style="width: 324px; height: 120px;">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-1[54.219.196.40]
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-2" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-2[184.169.219.145]
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            CPU Utilization &amp; Memory Consumption Across The Cluster
+          </div>
+          <div class="chart-stage">
+            <div id="chart_div"></div>
+          </div>
+          <div class="chart-notes">
+            Figures shown are in percentages.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-3" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-3[54.151.95.135]
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-4" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-3[54.215.67.135]
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-5" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-2[184.169.219.145]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-6" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-3[54.151.95.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-7" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-8" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-2[184.169.219.145] &amp; worker-3[54.151.95.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-9" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-2[184.169.219.145] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-10" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-3[54.151.95.135] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <hr>
+
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+  </div>
+
+  <script type="text/javascript" src="../../assets/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="../../assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script type="text/javascript" src="../../assets/lib/keen-js/dist/keen.min.js"></script>
+  <script type="text/javascript" src="../../assets/js/meta.js"></script>
+  <script type="text/javascript" src="../../assets/js/d3.js"></script>
+  <script type="text/javascript" src="../../assets/js/epoch.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+    var mapping = {
+      "184.72.0.96=54.219.196.40": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=184.169.219.145": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=184.169.219.145": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "184.169.219.145=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "184.169.219.145=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "54.151.95.135=54.215.67.135": {"chartObj": {}, "chartData": []}
+    };
+    var stats = [
+     ['Instance', 'CPU', 'Memory'],
+     ['184.72.0.96',  0,      0],
+     ['54.219.196.40',  0,      0],
+     ['184.169.219.145',  0,     0],
+     ['54.151.95.135',  0,      0],
+     ['54.215.67.135',  0,      0]
+   ];
+
+    var initFlowCharts = function() {
+      var i = 1;
+      for (var key in mapping) {
+        var chartData = {
+          "label": "Layer " + 1,
+          "values": []
+        };
+        mapping[key].chartData.push(chartData);
+        var id = "#flow-" + i;
+        mapping[key].chartObj = $(id).epoch({
+          data: mapping[key].chartData,
+          type: 'time.area',
+          axes: ['left', 'bottom', 'right'],
+          range: [0, 2]
+        });
+        i = i + 1;
+      }
+    };
+
+    var fetchDataFromServer = function() {
+      $.get("http://184.72.0.96:3000/summary", function(data) {
+        processDataFromServer(data);
+      });
+    };
+
+    var fetchStatsFromServer = function() {
+      $.get("http://184.72.0.96:3001/systemstats", function(data) {
+        processStatsFromServer(data);
+      });
+    };
+
+    var processDataFromServer = function(data) {
+      for (var i = 0; i < data.length; ++i) {
+        var key = data[i]["source_ip"] + "=" + data[i]["destination_ip"];
+        var bwdth = data[i]["bandwidth"] / 1000; // Convert to Gbps
+        var ndata = [ {time: data[i]["timestamp"], y: bwdth} ];
+        mapping[key].chartObj.push(ndata);
+      }
+      // Recursive call after 1s
+      setTimeout(fetchDataFromServer, 1000);
+    };
+
+    var processStatsFromServer = function(data) {
+      for (var i = 0; i < data.length; ++i) {
+        stats[i+1][1] = parseFloat(data[i]["cpu"]);
+        stats[i+1][2] = 100.0 - parseFloat(data[i]["memory"]);
+      }
+      drawChart();
+      // Recursive call after 1s
+      setTimeout(fetchStatsFromServer, 3000);
+    };
+
+    initFlowCharts();
+    fetchDataFromServer();
+    fetchStatsFromServer();
+
+
+
+      // Google charts
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable(stats);
+
+        var options = {
+          vAxis: {title: '%age Utilization', maxValue: 100, minValue: 0},
+          hAxis: {title: 'Instances', textStyle: {fontSize: 10} },
+          width: 681,
+          height: 325,
+          seriesType: 'bars',
+          animation:{
+            duration: 2000,
+            easing: 'linear',
+          },
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+  </script>
+</body>
+</html>
