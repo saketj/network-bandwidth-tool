@@ -75,11 +75,13 @@ class WorkHandler implements NBTMeasurementService.Iface {
         // Run the iperf command to find the bandwidth to the destination.
         String iperfCmd = (String)((JSONObject) config.get("iperf")).get("command");
         String iperfServerPort = (String)((JSONObject) config.get("iperf")).get("iperf_port");
-        String iperfTestDuration = (String)((JSONObject) config.get("iperf")).get("test_duration");
+        String iperfPayloadSize = (String)((JSONObject) config.get("iperf")).get("payload_size");
+        String iperfWindowSize = (String)((JSONObject) config.get("iperf")).get("window_size");
         ProcessBuilder pb = new ProcessBuilder(iperfCmd,
                 "-c", workRequest.getDestination_ip(),
                 "-p", iperfServerPort,
-                "-t", iperfTestDuration,
+                "-n", iperfPayloadSize,
+                "-w", iperfWindowSize,
                 "-J");
         Process process;
         String output = null;

@@ -6,7 +6,8 @@
   "iperf": {
     "command": "iperf3",
     "iperf_port": "5201",
-    "test_duration": "5"
+    "payload_size": "1M",
+    "window_size": "200K"
   },
   "worker_port": "9090",
   "time_btw_measurements": "5000"
