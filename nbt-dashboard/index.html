@@ -1,94 +1,358 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboards by Keen IO</title>
-  <meta charset="utf-8">
+  <title>NBT Visualizer</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/737368/747986/css/fonts.css">
-  <link rel="stylesheet" type='text/css' href="assets/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" type='text/css' href="assets/css/keen-static.css" />
-  <link rel="stylesheet" type='text/css' href="assets/css/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/epoch.min.css" />
+  <style>
+    #flow-1 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-2 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-3 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-4 .layer-1 .area {
+      fill: #226666;
+    }
+    #flow-5 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-6 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-7 .layer-1 .area {
+      fill: #AA3939;
+    }
+    #flow-8 .layer-1 .area {
+      fill: #AA6C39;
+    }
+    #flow-9 .layer-1 .area {
+      fill: #AA6C39;
+    }
+    #flow-10 .layer-1 .area {
+      fill: #2D882D;
+    }
+  </style>
 </head>
-<body>
+<body class="application">
 
-  <div class="masthead hero">
-    <div class="container">
-
-      <header class="navbar navbar-static">
-        <div class="navbar-header">
-          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".keen-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="https://keen.io?s=db_land" class="navbar-brand" target="_blank">
-            <svg class="keen-logo" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 594 128" enable-background="new 0 0 594 128" xml:space="preserve">
-              <g class="icon">
-                <polygon class="red" fill="#FFFFFF" points="59.811,73.135 66.859,85.34 49.275,115.863 140.807,115.863 147.814,128 28.045,128"></polygon>
-                <polygon class="green" fill="#FFFFFF" points="59.873,24.297 91.504,79.242 77.413,79.242 59.826,48.781 13.958,128 0,128"></polygon>
-                <polygon class="blue" fill="#FFFFFF" points="133.769,103.674 70.364,103.674 77.418,91.432 112.586,91.432 66.915,12.1 73.9,0"></polygon>
-              </g>
-              <path class="text" fill="#FFFFFF" d="M246.12 94.163L216.29 57.373l27.704-27.484c1.199-1.195 1.782-2.475 1.782-3.91 0-2.906-2.496-5.453-5.341-5.453 -1.869 0-3.128 0.887-4.262 1.896l-43.89 44.996V26.094c0-3.07-2.498-5.568-5.568-5.568 -2.96 0-5.461 2.549-5.461 5.568v72.01c0 3.02 2.501 5.57 5.461 5.57 3.07 0 5.568-2.498 5.568-5.57V81.145l16.181-16.178 29.093 36.231c1.15 1.643 2.655 2.477 4.474 2.477 3.021 0 5.573-2.551 5.573-5.57C247.604 96.301 246.896 95.151 246.12 94.163zM309.211 71.702c0-15.379-9.767-30.948-28.434-30.948 -16.456 0-29.348 13.941-29.348 31.743v0.23c0 18.1 13.108 31.748 30.49 31.748 9.265 0 16.353-2.836 22.95-9.162 1.104-0.967 1.713-2.248 1.713-3.609 0-2.631-2.192-4.771-4.887-4.771 -1.466 0-2.503 0.719-3.195 1.293 -4.886 4.5-10.083 6.596-16.354 6.596 -10.378 0-18.167-7.188-19.675-18.006h41.627C306.917 76.815 309.211 74.52 309.211 71.702zM280.55 50.182c11.501 0 16.667 9.162 17.751 18.117h-35.831C263.956 57.574 271.266 50.182 280.55 50.182zM374.018 71.702c0-15.379-9.767-30.948-28.434-30.948 -16.454 0-29.344 13.941-29.344 31.743v0.23c0 18.1 13.107 31.748 30.486 31.748 9.263 0 16.351-2.836 22.95-9.164 1.103-0.965 1.71-2.246 1.71-3.607 0-2.631-2.193-4.771-4.889-4.771 -1.464 0-2.501 0.719-3.193 1.293 -4.886 4.5-10.082 6.596-16.352 6.596 -10.374 0-18.163-7.189-19.677-18.006h41.626C371.723 76.815 374.018 74.52 374.018 71.702zM345.357 50.182c11.497 0 16.662 9.162 17.749 18.117h-35.83C328.762 57.574 336.072 50.182 345.357 50.182zM414.734 40.754c-8.037 0-14.492 3.127-19.233 9.309V46.9c0-3.062-2.396-5.461-5.455-5.461 -2.945 0-5.342 2.449-5.342 5.461v51.319c0 3.059 2.396 5.455 5.455 5.455 3.045 0 5.342-2.346 5.342-5.455V68.271c0-10.312 6.874-17.514 16.717-17.514 9.606 0 15.342 6.291 15.342 16.826v30.635c0 3.059 2.398 5.455 5.461 5.455 2.999 0 5.348-2.396 5.348-5.455V65.414C438.369 50.434 429.092 40.754 414.734 40.754zM491.424 20.525c-2.958 0-5.457 2.549-5.457 5.568v72.01c0 3.02 2.499 5.57 5.457 5.57 3.072 0 5.572-2.498 5.572-5.57v-72.01C496.996 23.023 494.496 20.525 491.424 20.525zM552.307 19.725c-23.504 0-41.916 18.613-41.916 42.373v0.229c0 24.03 17.923 42.149 41.689 42.149 23.507 0 41.92-18.613 41.92-42.377v-0.227C594 37.844 576.076 19.725 552.307 19.725zM582.627 62.098v0.229c0 18.133-13.035 31.807-30.32 31.807 -17.411 0-30.541-13.773-30.541-32.036v-0.227c0-18.131 13.032-31.803 30.314-31.803C569.209 30.068 582.627 44.137 582.627 62.098z"></path>
-            </svg>
-          </a>
-        </div>
-        <nav class="navbar-collapse collapse keen-navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav main-nav">
-            <li><a href="https://keen.io/blog/101269629091/charts-on-grids-responsive-dashboard-templates-with?s=db_land" target="_blank">About</a></li>
-            <li><a href="https://github.com/keen/dashboards" target="_blank">Docs</a></li>
-            <li><a href="https://keen.io/team?s=db_land" target="_blank">Team</a></li>
-            <li><a href="https://blog.keen.io/?s=db_land" target="_blank">Blog</a></li>
-            <li><a href="http://slack.keen.io/" target="_blank">Community</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://keen.io/signup?s=gh-dashboards" class="btn navbar-btn" target="_blank">Create a Free Project</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <h1>Dashboards by Keen IO</h1>
-      <p class="lead">Responsive dashboard templates for Bootstrap</p>
-      <a class="btn hero-btn" href="https://github.com/keen/dashboards" target="_blank">Source Code on Github</a>
-
-      <iframe src="https://ghbtns.com/github-btn.html?user=keen&amp;repo=dashboards&amp;type=watch&amp;count=true"
-        allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-      <iframe src="https://ghbtns.com/github-btn.html?user=keen&amp;repo=dashboards&amp;type=fork&amp;count=true"
-        allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-
-    </div>
-  </div>
-
-  <div class="content">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-sm-6">
-          <h2><a href="./examples/">Examples</a></h2>
-          <a href="./examples/"><img class="img-responsive img-thumbnail" src="./examples/starter-kit/preview.png"></a>
-        </div>
-
-        <div class="col-sm-6">
-          <h2><a href="./layouts/">Layouts</a></h2>
-          <a href="./layouts/"><img class="img-responsive img-thumbnail" src="./layouts/quarter-grid/preview.png"></a>
-        </div>
-
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">Network Bandwidth Visualization Tool</a>
       </div>
     </div>
   </div>
 
-  <div class="footer">
-    <div class="container">
-      <div class="love">
-        <p>Made with &#9825; in San Francisco</p>
-        <p>&copy; 2012&ndash;2017 <a href="https://keen.io?s=db_land">Keen IO</a></p>
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-1" style="width: 324px; height: 120px;">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-1[54.219.196.40]
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-2" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-2[184.169.219.145]
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            CPU Utilization &amp; Memory Consumption Across The Cluster
+          </div>
+          <div class="chart-stage">
+            <div id="chart_div"></div>
+          </div>
+          <div class="chart-notes">
+            Figures shown are in percentages.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-3" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-3[54.151.95.135]
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Network Bandwidth (in Gbps)
+              </div>
+              <div class="chart-stage">
+                <div class="epoch category10" id="flow-4" style="width: 324px; height: 120px">
+                </div>
+              </div>
+              <div class="chart-notes">
+                Between master[184.72.0.96] &amp; worker-3[54.215.67.135]
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-5" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-2[184.169.219.145]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-6" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-3[54.151.95.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-7" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-1[54.219.196.40] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-8" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-2[184.169.219.145] &amp; worker-3[54.151.95.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-9" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-2[184.169.219.145] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Network Bandwidth (in Gbps)
+          </div>
+          <div class="chart-stage">
+            <div class="epoch category10" id="flow-10" style="width: 443px; height: 120px">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Between worker-3[54.151.95.135] &amp; worker-4[54.215.67.135]
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <hr>
+
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
   </div>
 
   <script type="text/javascript" src="assets/lib/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="assets/lib/holderjs/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
   <script type="text/javascript" src="assets/lib/keen-js/dist/keen.min.js"></script>
   <script type="text/javascript" src="assets/js/meta.js"></script>
+  <script type="text/javascript" src="assets/js/d3.js"></script>
+  <script type="text/javascript" src="assets/js/epoch.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+    var mapping = {
+      "184.72.0.96=54.219.196.40": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=184.169.219.145": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "184.72.0.96=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=184.169.219.145": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "54.219.196.40=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "184.169.219.145=54.151.95.135": {"chartObj": {}, "chartData": []},
+      "184.169.219.145=54.215.67.135": {"chartObj": {}, "chartData": []},
+      "54.151.95.135=54.215.67.135": {"chartObj": {}, "chartData": []}
+    };
+    var stats = [
+     ['Instance', 'CPU', 'Memory'],
+     ['184.72.0.96',  0,      0],
+     ['54.219.196.40',  0,      0],
+     ['184.169.219.145',  0,     0],
+     ['54.151.95.135',  0,      0],
+     ['54.215.67.135',  0,      0]
+   ];
+
+    var initFlowCharts = function() {
+      var i = 1;
+      for (var key in mapping) {
+        var chartData = {
+          "label": "Layer " + 1,
+          "values": []
+        };
+        mapping[key].chartData.push(chartData);
+        var id = "#flow-" + i;
+        mapping[key].chartObj = $(id).epoch({
+          data: mapping[key].chartData,
+          type: 'time.area',
+          axes: ['left', 'bottom', 'right'],
+          range: [0, 2]
+        });
+        i = i + 1;
+      }
+    };
+
+    var fetchDataFromServer = function() {
+      $.get("http://184.72.0.96:3000/summary", function(data) {
+        processDataFromServer(data);
+      });
+    };
+
+    var fetchStatsFromServer = function() {
+      $.get("http://184.72.0.96:3001/systemstats", function(data) {
+        processStatsFromServer(data);
+      });
+    };
+
+    var processDataFromServer = function(data) {
+      for (var i = 0; i < data.length; ++i) {
+        var key = data[i]["source_ip"] + "=" + data[i]["destination_ip"];
+        var bwdth = data[i]["bandwidth"] / 1000; // Convert to Gbps
+        var ndata = [ {time: data[i]["timestamp"], y: bwdth} ];
+        mapping[key].chartObj.push(ndata);
+      }
+      // Recursive call after 1s
+      setTimeout(fetchDataFromServer, 1000);
+    };
+
+    var processStatsFromServer = function(data) {
+      for (var i = 0; i < data.length; ++i) {
+        stats[i+1][1] = parseFloat(data[i]["cpu"]);
+        stats[i+1][2] = 100.0 - parseFloat(data[i]["memory"]);
+      }
+      drawChart();
+      // Recursive call after 1s
+      setTimeout(fetchStatsFromServer, 3000);
+    };
+
+    initFlowCharts();
+    fetchDataFromServer();
+    fetchStatsFromServer();
+
+
+
+      // Google charts
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable(stats);
+
+        var options = {
+          vAxis: {title: '%age Utilization', maxValue: 100, minValue: 0},
+          hAxis: {title: 'Instances', textStyle: {fontSize: 10} },
+          width: 681,
+          height: 325,
+          seriesType: 'bars',
+          animation:{
+            duration: 2000,
+            easing: 'linear',
+          },
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+  </script>
 </body>
 </html>
