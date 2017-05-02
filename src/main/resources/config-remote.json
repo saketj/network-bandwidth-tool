@@ -14,5 +14,5 @@
 
   },
   "worker_port": "9090",
-  "time_btw_measurements": "5"
+  "time_btw_measurements": "500"
 }
