@@ -44,7 +44,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./">Network Bandwidth Visualization Tool</a>
+        <a class="navbar-brand" href="./">CS 740: Network Bandwidth Visualization Tool</a>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Network Bandwidth (in Gbps)
+                Available Network Bandwidth (in Gbps)
               </div>
               <div class="chart-stage">
                 <div class="epoch category10" id="flow-1" style="width: 324px; height: 120px;">
@@ -73,7 +73,7 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Network Bandwidth (in Gbps)
+                Available Network Bandwidth (in Gbps)
               </div>
               <div class="chart-stage">
                 <div class="epoch category10" id="flow-2" style="width: 324px; height: 120px">
@@ -104,7 +104,7 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Network Bandwidth (in Gbps)
+                Available Network Bandwidth (in Gbps)
               </div>
               <div class="chart-stage">
                 <div class="epoch category10" id="flow-3" style="width: 324px; height: 120px">
@@ -120,7 +120,7 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Network Bandwidth (in Gbps)
+                Available Network Bandwidth (in Gbps)
               </div>
               <div class="chart-stage">
                 <div class="epoch category10" id="flow-4" style="width: 324px; height: 120px">
@@ -138,7 +138,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-5" style="width: 443px; height: 120px">
@@ -152,7 +152,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-6" style="width: 443px; height: 120px">
@@ -166,7 +166,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-7" style="width: 443px; height: 120px">
@@ -182,7 +182,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-8" style="width: 443px; height: 120px">
@@ -196,7 +196,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-9" style="width: 443px; height: 120px">
@@ -210,7 +210,7 @@
       <div class="col-sm-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Network Bandwidth (in Gbps)
+            Available Network Bandwidth (in Gbps)
           </div>
           <div class="chart-stage">
             <div class="epoch category10" id="flow-10" style="width: 443px; height: 120px">
@@ -318,7 +318,7 @@
       }
       drawChart();
       // Recursive call after 1s
-      setTimeout(fetchStatsFromServer, 3000);
+      setTimeout(fetchStatsFromServer, 1000);
     };
 
     initFlowCharts();
@@ -345,8 +345,8 @@
           height: 325,
           seriesType: 'bars',
           animation:{
-            duration: 2000,
-            easing: 'linear',
+            duration: 1000,
+            easing: 'out'
           },
         };
 
